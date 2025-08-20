@@ -5,7 +5,6 @@
 
 import { componentIds, StaticHeader, StaticComponent, centeredText, addManialinkListener } from '../../UI.js'
 import config from './TimerWidget.config.js'
-import globalconfig from '../../../../config/Config.js'
 
 export default class TimerWidget extends StaticComponent {
 
@@ -46,32 +45,33 @@ export default class TimerWidget extends StaticComponent {
       }
     })
     const setAdjustedTimeLimit = () => {
-      if (tm.getGameMode() !== 'TimeAttack') return;
-      const authorTime = tm.maps.current.authorTime;
-      let newLimit = globalconfig.defaultTimeAttackTimeLimit;
+      if (tm.getGameMode() !== 'TimeAttack') { return }
+      const authorTime = tm.maps.current.authorTime
+      const globalconfig = tm.config.controller
+      let newLimit = globalconfig.defaultTimeAttackTimeLimit
       if (config.useAuthorTimeMultiplier) {
         newLimit = Math.max(
           authorTime * config.authorTimeMultiplier,
           globalconfig.defaultTimeAttackTimeLimit,
           globalconfig.dynamicTimerSubtractionLimit
-        );
+        )
       } else {
         newLimit = Math.max(
           globalconfig.defaultTimeAttackTimeLimit,
           globalconfig.dynamicTimerSubtractionLimit
-        );
+        )
       }
-      tm.timer.setTimeLimit(newLimit);
-    };
+      tm.timer.setTimeLimit(newLimit)
+    }
     tm.addListener('ServerStateChanged', state => {
-      if (state === 'race') setAdjustedTimeLimit();
-    });
+      if (state === 'race') { setAdjustedTimeLimit() }
+    })
     this.renderOnEvent('BeginMap', () => {
-      this.isOnRestart = false;
-      this.noButtonXml = this.constructXml(false);
-      this.xmlWithButtons = this.constructXml(true);
-      return this.display();
-    });
+      this.isOnRestart = false
+      this.noButtonXml = this.constructXml(false)
+      this.xmlWithButtons = this.constructXml(true)
+      return this.display()
+    })
     addManialinkListener(this.pauseButtonId, (info) => {
       if (info.privilege < config.timerActionsPrivilege) { return }
       if (!tm.timer.isDynamic) {
