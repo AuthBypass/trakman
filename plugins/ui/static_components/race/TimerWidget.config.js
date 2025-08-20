@@ -17,8 +17,9 @@ export default {
   buttonOrder: ['pause', 'add', 'subtract'],
   pausedText: 'PAUSED',
   textYOffset: -0.3,
-  useAuthorTimeMultiplier: false,
-  authorTimeMultiplier: 3, 
+  useAuthorTimeMultiplier: true,
+  authorTimeMultiplier: 3,
+  newTimeLimitMessage: `${p.admin}TimeAttack limit set to ${p.highlight}#{limit}${p.admin} seconds (Multiplier: ${p.highlight}#{multiplier}${p.admin}).`,
   icons: {
     pause: icons.pause,
     resume: icons.play,

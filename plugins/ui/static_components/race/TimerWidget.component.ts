@@ -49,12 +49,17 @@ export default class TimerWidget extends StaticComponent {
       const authorTime = tm.maps.current.authorTime
       const globalconfig = tm.config.controller
       let newLimit = globalconfig.defaultTimeAttackTimeLimit
+      let multiplier = config.authorTimeMultiplier
       if (config.useAuthorTimeMultiplier) {
         newLimit = Math.max(
-          authorTime * config.authorTimeMultiplier,
+          authorTime * multiplier,
           globalconfig.defaultTimeAttackTimeLimit,
           globalconfig.dynamicTimerSubtractionLimit
         )
+        tm.sendMessage(tm.utils.strVar(config.newTimeLimitMessage, {
+          limit: Math.floor(newLimit / 1000),
+          multiplier
+        }))
       } else {
         newLimit = Math.max(
           globalconfig.defaultTimeAttackTimeLimit,
