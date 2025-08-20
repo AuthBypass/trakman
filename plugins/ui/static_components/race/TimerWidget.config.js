@@ -17,6 +17,8 @@ export default {
   buttonOrder: ['pause', 'add', 'subtract'],
   pausedText: 'PAUSED',
   textYOffset: -0.3,
+  useAuthorTimeMultiplier: false,
+  authorTimeMultiplier: 3, 
   icons: {
     pause: icons.pause,
     resume: icons.play,
