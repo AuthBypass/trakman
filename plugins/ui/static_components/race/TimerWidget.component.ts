@@ -61,14 +61,10 @@ export default class TimerWidget extends StaticComponent {
           globalconfig.dynamicTimerSubtractionLimit
         );
       }
+      tm.timer.setTimeLimit(newLimit);
     };
     tm.addListener('ServerStateChanged', state => {
       if (state === 'race') setAdjustedTimeLimit();
-    });
-    tm.addListener('ServerStateChanged', (state) => {
-      if (state === 'race') {
-        setAdjustedTimeLimit();
-      }
     });
     this.renderOnEvent('BeginMap', () => {
       this.isOnRestart = false;
