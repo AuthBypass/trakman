@@ -56,10 +56,12 @@ export default class TimerWidget extends StaticComponent {
           globalconfig.defaultTimeAttackTimeLimit,
           globalconfig.dynamicTimerSubtractionLimit
         )
-        tm.sendMessage(tm.utils.strVar(config.newTimeLimitMessage, {
-          limit: Math.floor(newLimit / 1000),
-          multiplier
-        }))
+        if (config.sendTimeLimitMessage) {
+          tm.sendMessage(tm.utils.strVar(config.newTimeLimitMessage, {
+            limit: Math.floor(newLimit / 1000),
+            multiplier
+          }))
+        }
       } else {
         newLimit = Math.max(
           globalconfig.defaultTimeAttackTimeLimit,

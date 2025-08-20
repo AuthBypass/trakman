@@ -20,6 +20,7 @@ export default {
   useAuthorTimeMultiplier: true,
   authorTimeMultiplier: 3,
   newTimeLimitMessage: `${p.admin}TimeAttack limit set to ${p.highlight}#{limit}${p.admin} seconds (Multiplier: ${p.highlight}#{multiplier}${p.admin}).`,
+  sendTimeLimitMessage: true,
   icons: {
     pause: icons.pause,
     resume: icons.play,
